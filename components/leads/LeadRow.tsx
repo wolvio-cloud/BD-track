@@ -8,6 +8,7 @@ interface LeadRowProps {
   lead: Lead
   currentUser: User
   onEdit: (lead: Lead) => void
+  onView: (lead: Lead) => void
 }
 
 const qualityColor: Record<string, string> = {
@@ -22,16 +23,24 @@ function isOverdue(dateStr: string | undefined): boolean {
   return !isNaN(d.getTime()) && d < new Date()
 }
 
-export default function LeadRow({ lead, currentUser, onEdit }: LeadRowProps) {
+function isStale(dateStr: string | undefined): boolean {
+  if (!dateStr) return false
+  const d = new Date(dateStr)
+  return !isNaN(d.getTime()) && (Date.now() - d.getTime()) > 14 * 24 * 60 * 60 * 1000
+}
+
+export default function LeadRow({ lead, currentUser, onEdit, onView }: LeadRowProps) {
   const canEdit = currentUser.role === 'Founder' || lead.owner === currentUser.name
   const closed = lead.stage === 'Won' || lead.stage === 'Lost'
   const overdue = !closed && isOverdue(lead.nextAction)
+  const stale = !closed && isStale(lead.lastContact)
 
   return (
     <tr
-      className={`border-b border-border transition-colors ${
+      className={`border-b border-border transition-colors cursor-pointer ${
         overdue ? 'bg-danger/5 hover:bg-danger/10' : 'hover:bg-surface2/60'
       }`}
+      onClick={() => onView(lead)}
     >
       <td className="px-4 py-3 text-xs font-mono text-text3 whitespace-nowrap">
         {lead.leadId || '—'}
@@ -69,10 +78,13 @@ export default function LeadRow({ lead, currentUser, onEdit }: LeadRowProps) {
           <span className="text-xs font-mono text-text2">{formatDate(lead.nextAction)}</span>
         )}
       </td>
-      <td className="px-4 py-3 text-xs font-mono text-text2 whitespace-nowrap">
-        {lead.owner || '—'}
+      <td className="px-4 py-3 whitespace-nowrap">
+        <span className="text-xs font-mono text-text2">{lead.owner || '—'}</span>
+        {stale && (
+          <span className="ml-1.5 text-[10px] font-mono text-warn bg-warn/10 px-1.5 py-0.5 rounded-full">stale</span>
+        )}
       </td>
-      <td className="px-4 py-3">
+      <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
         {canEdit && (
           <button
             onClick={() => onEdit(lead)}

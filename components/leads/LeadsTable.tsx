@@ -49,9 +49,10 @@ interface LeadsTableProps {
   leads: Lead[]
   currentUser: User
   onEdit: (lead: Lead) => void
+  onView: (lead: Lead) => void
 }
 
-export default function LeadsTable({ leads, currentUser, onEdit }: LeadsTableProps) {
+export default function LeadsTable({ leads, currentUser, onEdit, onView }: LeadsTableProps) {
   const [sortCol, setSortCol] = useState<SortCol>(null)
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc')
 
@@ -109,6 +110,7 @@ export default function LeadsTable({ leads, currentUser, onEdit }: LeadsTablePro
                 lead={lead}
                 currentUser={currentUser}
                 onEdit={onEdit}
+                onView={onView}
               />
             ))}
           </tbody>
