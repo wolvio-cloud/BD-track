@@ -9,11 +9,7 @@ export default function RootPage() {
 
   useEffect(() => {
     const user = getUser()
-    if (user) {
-      router.replace('/dashboard')
-    } else {
-      router.replace('/login')
-    }
+    router.replace(user ? '/dashboard' : '/login')
   }, [router])
 
   return null

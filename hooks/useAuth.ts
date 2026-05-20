@@ -7,10 +7,12 @@ import { getUser, clearUser } from '@/lib/auth'
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null)
+  const [authLoading, setAuthLoading] = useState(true)
   const router = useRouter()
 
   useEffect(() => {
     setUser(getUser())
+    setAuthLoading(false)
   }, [])
 
   const logout = useCallback(() => {
@@ -19,5 +21,5 @@ export function useAuth() {
     router.replace('/login')
   }, [router])
 
-  return { user, logout }
+  return { user, authLoading, logout }
 }

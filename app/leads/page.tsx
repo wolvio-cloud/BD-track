@@ -14,7 +14,7 @@ import Toast, { useToast } from '@/components/ui/Toast'
 import type { Lead } from '@/lib/types'
 
 export default function LeadsPage() {
-  const { user } = useAuth()
+  const { user, authLoading } = useAuth()
   const router = useRouter()
   const { leads, loading, error, reload } = useLeads()
 
@@ -25,8 +25,8 @@ export default function LeadsPage() {
   const { toast, showToast, dismissToast } = useToast()
 
   useEffect(() => {
-    if (!user) router.replace('/login')
-  }, [user, router])
+    if (!authLoading && !user) router.replace('/login')
+  }, [authLoading, user, router])
 
   const filtered = useMemo(() => {
     return leads.filter((l) => {
@@ -41,7 +41,7 @@ export default function LeadsPage() {
     })
   }, [leads, search, stageFilter, ownerFilter])
 
-  if (!user) return null
+  if (authLoading || !user) return null
 
   return (
     <div className="min-h-screen bg-bg flex flex-col">

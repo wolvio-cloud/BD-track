@@ -13,15 +13,15 @@ import { StatCardSkeleton, FunnelSkeleton, AlertPanelSkeleton } from '@/componen
 import { formatINR } from '@/lib/utils'
 
 export default function DashboardPage() {
-  const { user } = useAuth()
+  const { user, authLoading } = useAuth()
   const router = useRouter()
   const { leads, loading, error } = useLeads()
 
   useEffect(() => {
-    if (!user) router.replace('/login')
-  }, [user, router])
+    if (!authLoading && !user) router.replace('/login')
+  }, [authLoading, user, router])
 
-  if (!user) return null
+  if (authLoading || !user) return null
 
   const active = leads.filter((l) => l.stage !== 'Won' && l.stage !== 'Lost')
   const pipelineValue = active.reduce((sum, l) => sum + (parseFloat(l.value) || 0), 0)
@@ -34,7 +34,6 @@ export default function DashboardPage() {
       <NavTabs />
 
       <main className="flex-1 px-4 md:px-8 py-6 flex flex-col gap-6 max-w-7xl w-full mx-auto">
-        {/* Header */}
         <div>
           <h1 className="font-display font-bold text-2xl text-text">Pipeline Overview</h1>
           <p className="text-sm text-text3 font-mono mt-1">
@@ -61,23 +60,10 @@ export default function DashboardPage() {
           </div>
         ) : (
           <>
-            {/* Stat Cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <StatCard
-                label="Active Leads"
-                value={active.length}
-                accent="text-accent2"
-              />
-              <StatCard
-                label="Pipeline Value"
-                value={formatINR(pipelineValue)}
-                accent="text-accent"
-              />
-              <StatCard
-                label="Won"
-                value={wonCount}
-                accent="text-accent"
-              />
+              <StatCard label="Active Leads" value={active.length} accent="text-accent2" />
+              <StatCard label="Pipeline Value" value={formatINR(pipelineValue)} accent="text-accent" />
+              <StatCard label="Won" value={wonCount} accent="text-accent" />
               <StatCard
                 label="Needs Attention"
                 value={needsAttention}
@@ -85,11 +71,7 @@ export default function DashboardPage() {
                 sub={needsAttention > 0 ? 'Missing next action date' : undefined}
               />
             </div>
-
-            {/* Funnel Chart */}
             <FunnelChart leads={leads} />
-
-            {/* Alert Panels */}
             <AlertPanel leads={leads} />
           </>
         )}
