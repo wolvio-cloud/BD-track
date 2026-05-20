@@ -16,12 +16,23 @@ const qualityColor: Record<string, string> = {
   Low: 'text-text3',
 }
 
+function isOverdue(dateStr: string | undefined): boolean {
+  if (!dateStr) return false
+  const d = new Date(dateStr)
+  return !isNaN(d.getTime()) && d < new Date()
+}
+
 export default function LeadRow({ lead, currentUser, onEdit }: LeadRowProps) {
-  const canEdit =
-    currentUser.role === 'Founder' || lead.owner === currentUser.name
+  const canEdit = currentUser.role === 'Founder' || lead.owner === currentUser.name
+  const closed = lead.stage === 'Won' || lead.stage === 'Lost'
+  const overdue = !closed && isOverdue(lead.nextAction)
 
   return (
-    <tr className="border-b border-border hover:bg-surface2/60 transition-colors">
+    <tr
+      className={`border-b border-border transition-colors ${
+        overdue ? 'bg-danger/5 hover:bg-danger/10' : 'hover:bg-surface2/60'
+      }`}
+    >
       <td className="px-4 py-3 text-xs font-mono text-text3 whitespace-nowrap">
         {lead.leadId || '—'}
       </td>
@@ -46,13 +57,17 @@ export default function LeadRow({ lead, currentUser, onEdit }: LeadRowProps) {
       <td className="px-4 py-3 text-sm font-mono text-accent whitespace-nowrap">
         {lead.value ? formatINR(lead.value) : '—'}
       </td>
-      <td
-        className={`px-4 py-3 text-xs font-mono font-medium whitespace-nowrap ${qualityColor[lead.quality] ?? 'text-text3'}`}
-      >
+      <td className={`px-4 py-3 text-xs font-mono font-medium whitespace-nowrap ${qualityColor[lead.quality] ?? 'text-text3'}`}>
         {lead.quality || '—'}
       </td>
-      <td className="px-4 py-3 text-xs font-mono text-text2 whitespace-nowrap">
-        {formatDate(lead.nextAction)}
+      <td className="px-4 py-3 whitespace-nowrap">
+        {overdue ? (
+          <span className="text-xs font-mono text-danger font-semibold">
+            {formatDate(lead.nextAction)} ↑
+          </span>
+        ) : (
+          <span className="text-xs font-mono text-text2">{formatDate(lead.nextAction)}</span>
+        )}
       </td>
       <td className="px-4 py-3 text-xs font-mono text-text2 whitespace-nowrap">
         {lead.owner || '—'}
