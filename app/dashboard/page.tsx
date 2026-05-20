@@ -48,6 +48,7 @@ export default function DashboardPage() {
 
         {loading ? (
           <>
+            <p className="text-xs text-text3 font-mono -mt-2">Connecting to Google Sheets… (may take up to 20s on first load)</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {Array.from({ length: 4 }).map((_, i) => <StatCardSkeleton key={i} />)}
             </div>
@@ -55,8 +56,15 @@ export default function DashboardPage() {
             <AlertPanelSkeleton />
           </>
         ) : error ? (
-          <div className="bg-surface border border-danger/30 rounded-xl p-6 text-center">
-            <p className="text-danger text-sm font-body">{error}</p>
+          <div className="bg-surface border border-danger/30 rounded-xl p-8 flex flex-col items-center gap-3">
+            <p className="text-danger text-sm font-body text-center">{error}</p>
+            <p className="text-text3 text-xs font-mono text-center">Apps Script can be slow on first load — try again.</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="mt-1 text-sm font-display font-bold bg-accent text-bg px-5 py-2 rounded-lg hover:bg-accent/90 transition-all"
+            >
+              Retry
+            </button>
           </div>
         ) : (
           <>

@@ -1,12 +1,26 @@
 import type { Lead, User } from './types'
 
 const BASE = process.env.NEXT_PUBLIC_APPS_SCRIPT_URL!
+const TIMEOUT_MS = 20000
 
 async function get<T>(params: Record<string, string>): Promise<T> {
   const qs = new URLSearchParams(params).toString()
-  const res = await fetch(`${BASE}?${qs}`)
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  return res.json() as Promise<T>
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
+  try {
+    const res = await fetch(`${BASE}?${qs}`, { signal: controller.signal })
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const data = await res.json()
+    if (data.error) throw new Error(data.error)
+    return data as T
+  } catch (err) {
+    if ((err as Error).name === 'AbortError') {
+      throw new Error('Request timed out — Apps Script is slow to start. Please retry.')
+    }
+    throw err
+  } finally {
+    clearTimeout(timer)
+  }
 }
 
 export async function loginUser(name: string, pin: string): Promise<User> {
