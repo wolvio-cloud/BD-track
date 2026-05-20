@@ -2,18 +2,15 @@ import type { Lead, User } from './types'
 
 const BASE = process.env.NEXT_PUBLIC_APPS_SCRIPT_URL!
 
-async function post<T>(body: Record<string, unknown>): Promise<T> {
-  const res = await fetch(BASE, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  })
+async function get<T>(params: Record<string, string>): Promise<T> {
+  const qs = new URLSearchParams(params).toString()
+  const res = await fetch(`${BASE}?${qs}`)
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   return res.json() as Promise<T>
 }
 
 export async function loginUser(name: string, pin: string): Promise<User> {
-  const data = await post<{ success: boolean; user?: User; error?: string }>({
+  const data = await get<{ success: boolean; user?: User; error?: string }>({
     action: 'login',
     name,
     pin,
@@ -25,21 +22,18 @@ export async function loginUser(name: string, pin: string): Promise<User> {
 }
 
 export async function fetchLeads(): Promise<Lead[]> {
-  const url = `${BASE}?action=getLeads`
-  const res = await fetch(url)
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  const data = (await res.json()) as { leads: Lead[] }
+  const data = await get<{ leads: Lead[] }>({ action: 'getLeads' })
   return data.leads ?? []
 }
 
 export async function addLead(
   payload: Partial<Lead>
 ): Promise<{ success: boolean; leadId: string }> {
-  return post({ action: 'addLead', ...payload })
+  return get({ action: 'addLead', data: JSON.stringify(payload) })
 }
 
 export async function updateLead(
   payload: Partial<Lead> & { rowIndex: number }
 ): Promise<{ success: boolean }> {
-  return post({ action: 'updateLead', ...payload })
+  return get({ action: 'updateLead', data: JSON.stringify(payload) })
 }
