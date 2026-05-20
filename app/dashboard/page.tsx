@@ -9,7 +9,7 @@ import NavTabs from '@/components/layout/NavTabs'
 import StatCard from '@/components/dashboard/StatCard'
 import FunnelChart from '@/components/dashboard/FunnelChart'
 import AlertPanel from '@/components/dashboard/AlertPanel'
-import Spinner from '@/components/ui/Spinner'
+import { StatCardSkeleton, FunnelSkeleton, AlertPanelSkeleton } from '@/components/ui/Skeleton'
 import { formatINR } from '@/lib/utils'
 
 export default function DashboardPage() {
@@ -48,9 +48,13 @@ export default function DashboardPage() {
         </div>
 
         {loading ? (
-          <div className="flex items-center justify-center py-24">
-            <Spinner size="lg" />
-          </div>
+          <>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {Array.from({ length: 4 }).map((_, i) => <StatCardSkeleton key={i} />)}
+            </div>
+            <FunnelSkeleton />
+            <AlertPanelSkeleton />
+          </>
         ) : error ? (
           <div className="bg-surface border border-danger/30 rounded-xl p-6 text-center">
             <p className="text-danger text-sm font-body">{error}</p>

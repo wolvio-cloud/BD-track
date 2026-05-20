@@ -9,7 +9,7 @@ import NavTabs from '@/components/layout/NavTabs'
 import TableToolbar from '@/components/leads/TableToolbar'
 import LeadsTable from '@/components/leads/LeadsTable'
 import LeadModal from '@/components/leads/LeadModal'
-import Spinner from '@/components/ui/Spinner'
+import { TableRowSkeleton } from '@/components/ui/Skeleton'
 import Toast, { useToast } from '@/components/ui/Toast'
 import type { Lead } from '@/lib/types'
 
@@ -72,8 +72,16 @@ export default function LeadsPage() {
 
         {/* Table */}
         {loading ? (
-          <div className="flex items-center justify-center py-24">
-            <Spinner size="lg" />
+          <div className="bg-surface border border-border rounded-xl overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[900px]">
+                <tbody>
+                  {Array.from({ length: 8 }).map((_, i) => (
+                    <TableRowSkeleton key={i} />
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         ) : error ? (
           <div className="bg-surface border border-danger/30 rounded-xl p-6 text-center">
