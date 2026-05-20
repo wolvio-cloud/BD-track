@@ -26,11 +26,12 @@ html, body {
   font-family: var(--font-instrument-sans), sans-serif;
 }
 
-/* Subtle page gradient */
+/* Page depth gradient */
 body {
   background-image:
-    radial-gradient(ellipse at 15% 0%, rgba(129,140,248,0.06) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 95%, rgba(110,231,183,0.04) 0%, transparent 50%);
+    radial-gradient(ellipse at 15% -5%, rgba(129,140,248,0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 100%, rgba(110,231,183,0.08) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, rgba(129,140,248,0.03) 0%, transparent 70%);
 }
 
 @keyframes fade-up {

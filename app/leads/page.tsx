@@ -44,7 +44,7 @@ export default function LeadsPage() {
   if (authLoading || !user) return null
 
   return (
-    <div className="min-h-screen bg-bg flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Topbar />
       <NavTabs />
 

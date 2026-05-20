@@ -25,7 +25,8 @@ export default function FunnelChart({ leads }: { leads: Lead[] }) {
       : null
 
   return (
-    <div className="bg-surface border border-border rounded-2xl p-6 animate-fade-up" style={{ animationDelay: '200ms' }}>
+    <div className="relative bg-surface border border-border rounded-2xl p-6 animate-fade-up overflow-hidden" style={{ animationDelay: '200ms' }}>
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 100% 0%, rgba(129,140,248,0.08) 0%, transparent 50%)' }} />
       <div className="flex items-center justify-between mb-6">
         <div>
           <h2 className="text-sm font-display font-semibold text-text">Pipeline Funnel</h2>

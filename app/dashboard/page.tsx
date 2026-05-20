@@ -30,20 +30,27 @@ export default function DashboardPage() {
   const closeRate = leads.length > 0 ? Math.round((wonCount / leads.length) * 100) : 0
 
   return (
-    <div className="min-h-screen bg-bg flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Topbar />
       <NavTabs />
 
       <main className="flex-1 px-4 md:px-8 py-6 flex flex-col gap-6 max-w-7xl w-full mx-auto">
-        <div className="animate-fade-up">
-          <h1 className="font-display font-bold text-2xl text-text">Pipeline Overview</h1>
-          <p className="text-sm text-text3 font-mono mt-1">
-            {new Date().toLocaleDateString('en-IN', {
-              weekday: 'long',
-              day: 'numeric',
-              month: 'long',
-              year: 'numeric',
-            })}
+        <div className="animate-fade-up flex items-end justify-between gap-4 flex-wrap">
+          <div>
+            <p className="text-sm font-mono text-text3 mb-1">
+              {new Date().toLocaleDateString('en-IN', {
+                weekday: 'long',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+              })}
+            </p>
+            <h1 className="font-display font-extrabold text-3xl text-text tracking-tight">
+              Pipeline Overview
+            </h1>
+          </div>
+          <p className="text-sm font-body text-text3 mb-0.5">
+            Welcome back, <span className="text-text font-medium">{user.name}</span>
           </p>
         </div>
 
