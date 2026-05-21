@@ -39,51 +39,39 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-bg flex items-center justify-center px-4">
-      <div className="w-full max-w-sm">
-        {/* Logo */}
-        <div className="text-center mb-10">
-          <h1 className="font-display font-extrabold text-4xl text-text tracking-tight">
-            Wolvio<span className="text-accent">.</span>
+    <main className="min-h-screen flex items-center justify-center px-4">
+      <div className="w-full max-w-[360px]">
+
+        {/* Brand */}
+        <div className="mb-8">
+          <h1 className="text-[22px] font-semibold text-text tracking-tight">
+            Wolvio <span className="text-text3 font-normal">BD Track</span>
           </h1>
-          <p className="mt-2 text-sm text-text3 font-mono">Pipeline Intelligence</p>
+          <p className="mt-1 text-[13px] text-text3">Sign in to your workspace</p>
         </div>
 
         {/* Card */}
-        <div className="bg-surface border border-border rounded-2xl p-8">
-          <h2 className="text-lg font-display font-semibold text-text mb-6">
-            Sign in
-          </h2>
+        <div className="bg-surface border border-border rounded-xl p-6">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-            {/* Name dropdown */}
-            <div className="flex flex-col gap-2">
-              <label
-                htmlFor="name"
-                className="text-xs font-mono text-text2 uppercase tracking-widest"
-              >
-                Your Name
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="name" className="text-[11px] font-medium text-text3 uppercase tracking-[0.08em]">
+                Name
               </label>
               <select
                 id="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full bg-surface2 border border-border text-text text-sm rounded-lg px-4 py-3 appearance-none focus:outline-none focus:border-accent2 transition-colors font-body cursor-pointer"
+                className="w-full bg-surface2 border border-border text-text text-[13px] rounded-lg px-3 py-2.5 focus:outline-none focus:border-accent transition-colors cursor-pointer"
               >
                 {NAMES.map((n) => (
-                  <option key={n} value={n} className="bg-surface2">
-                    {n}
-                  </option>
+                  <option key={n} value={n} className="bg-surface2">{n}</option>
                 ))}
               </select>
             </div>
 
-            {/* PIN input */}
-            <div className="flex flex-col gap-2">
-              <label
-                htmlFor="pin"
-                className="text-xs font-mono text-text2 uppercase tracking-widest"
-              >
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="pin" className="text-[11px] font-medium text-text3 uppercase tracking-[0.08em]">
                 PIN
               </label>
               <input
@@ -92,28 +80,21 @@ export default function LoginPage() {
                 inputMode="numeric"
                 maxLength={6}
                 value={pin}
-                onChange={(e) => {
-                  setPin(e.target.value.replace(/\D/g, ''))
-                  setError('')
-                }}
+                onChange={(e) => { setPin(e.target.value.replace(/\D/g, '')); setError('') }}
                 placeholder="••••••"
                 autoComplete="current-password"
-                className="w-full bg-surface2 border border-border text-text text-sm rounded-lg px-4 py-3 placeholder-text3 focus:outline-none focus:border-accent2 transition-colors font-mono tracking-[0.3em]"
+                className="w-full bg-surface2 border border-border text-text text-[13px] rounded-lg px-3 py-2.5 placeholder-text3 focus:outline-none focus:border-accent transition-colors font-mono tracking-[0.25em]"
               />
             </div>
 
-            {/* Error */}
             {error && (
-              <p className="text-danger text-sm font-body text-center -mt-1">
-                {error}
-              </p>
+              <p className="text-[13px] text-danger text-center">{error}</p>
             )}
 
-            {/* Submit */}
             <button
               type="submit"
               disabled={loading}
-              className="mt-1 w-full bg-accent text-bg font-display font-bold text-sm py-3 rounded-lg hover:bg-accent/90 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="mt-1 w-full bg-accent text-white font-semibold text-[13px] py-2.5 rounded-lg hover:opacity-90 active:scale-[0.99] transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
@@ -127,8 +108,8 @@ export default function LoginPage() {
           </form>
         </div>
 
-        <p className="text-center text-xs text-text3 font-mono mt-6">
-          Wolvio Solutions Pvt Ltd — Internal Use Only
+        <p className="text-center text-[11px] text-text3 mt-6">
+          Wolvio Solutions — Internal use only
         </p>
       </div>
     </main>

@@ -21,13 +21,13 @@ function AttentionPanel({ leads }: { leads: Lead[] }) {
 
   return (
     <div
-      className="bg-surface border border-border rounded-2xl p-6 flex-1 min-w-0 animate-fade-up"
+      className="bg-surface border border-border rounded-xl p-5 flex-1 min-w-0 animate-fade-up"
       style={{ animationDelay: '400ms' }}
     >
       <div className="flex items-start justify-between mb-5">
         <div>
-          <h2 className="text-sm font-display font-semibold text-text">Needs Attention</h2>
-          <p className="text-xs font-mono text-text3 mt-0.5">Overdue or missing follow-ups</p>
+          <h2 className="text-[13px] font-semibold text-text">Needs Attention</h2>
+          <p className="text-[12px] text-text3 mt-0.5">Overdue or missing follow-ups</p>
         </div>
         {urgentCount > 0 && (
           <span className="text-xs font-mono bg-warn/10 text-warn px-2.5 py-1 rounded-full shrink-0">
@@ -38,9 +38,8 @@ function AttentionPanel({ leads }: { leads: Lead[] }) {
 
       {items.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-8 gap-2">
-          <span className="text-xl text-accent">✓</span>
-          <p className="text-xs font-mono text-accent">All caught up</p>
-          <p className="text-xs font-mono text-text3">Every active lead has a follow-up date</p>
+          <p className="text-[13px] font-medium text-success">All caught up</p>
+          <p className="text-[12px] text-text3">Every active lead has a follow-up date</p>
         </div>
       ) : (
         <ul className="flex flex-col gap-0.5">
@@ -54,7 +53,7 @@ function AttentionPanel({ leads }: { leads: Lead[] }) {
                 <div
                   className={`w-1.5 h-1.5 rounded-full shrink-0 ${type === 'overdue' ? 'bg-danger' : 'bg-warn'}`}
                 />
-                <span className="text-sm font-body font-medium text-text truncate flex-1">
+                <span className="text-[13px] font-medium text-text truncate flex-1">
                   {lead.company}
                 </span>
                 <span
@@ -88,13 +87,13 @@ function OpportunityPanel({ leads }: { leads: Lead[] }) {
 
   return (
     <div
-      className="bg-surface border border-border rounded-2xl p-6 flex-1 min-w-0 animate-fade-up"
+      className="bg-surface border border-border rounded-xl p-5 flex-1 min-w-0 animate-fade-up"
       style={{ animationDelay: '500ms' }}
     >
       <div className="flex items-start justify-between mb-5">
         <div>
-          <h2 className="text-sm font-display font-semibold text-text">High Opportunity</h2>
-          <p className="text-xs font-mono text-text3 mt-0.5">Top active leads by quality &amp; value</p>
+          <h2 className="text-[13px] font-semibold text-text">High Opportunity</h2>
+          <p className="text-[12px] text-text3 mt-0.5">Top active leads by quality &amp; value</p>
         </div>
         {items.length > 0 && (
           <span className="text-xs font-mono bg-accent/10 text-accent px-2.5 py-1 rounded-full shrink-0">
@@ -115,14 +114,14 @@ function OpportunityPanel({ leads }: { leads: Lead[] }) {
             return (
               <li key={lead.rowIndex} className="flex items-center gap-3 py-2 border-b border-border last:border-0">
                 <span className="text-xs font-mono text-text3 w-4 shrink-0 text-right">{i + 1}</span>
-                <span className="text-sm font-body font-medium text-text truncate flex-1">{lead.company}</span>
+                <span className="text-[13px] font-medium text-text truncate flex-1">{lead.company}</span>
                 <span
                   className="text-xs font-mono px-2 py-0.5 rounded-full shrink-0 hidden sm:inline"
                   style={{ color: colors?.text ?? '#9d9bbb', background: `${colors?.text ?? '#9d9bbb'}15` }}
                 >
                   {lead.stage}
                 </span>
-                <span className="text-sm font-mono font-bold text-accent shrink-0">{formatINR(lead.value)}</span>
+                <span className="text-[13px] font-mono font-semibold tabular" style={{ color: '#2dd4bf' }}>{formatINR(lead.value)}</span>
               </li>
             )
           })}

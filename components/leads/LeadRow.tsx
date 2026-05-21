@@ -12,7 +12,7 @@ interface LeadRowProps {
 }
 
 const qualityColor: Record<string, string> = {
-  High: 'text-accent',
+  High: 'text-success',
   Medium: 'text-warn',
   Low: 'text-text3',
 }
@@ -63,7 +63,7 @@ export default function LeadRow({ lead, currentUser, onEdit, onView }: LeadRowPr
       <td className="px-4 py-3">
         <StageBadge stage={lead.stage} />
       </td>
-      <td className="px-4 py-3 text-sm font-mono text-accent whitespace-nowrap">
+      <td className="px-4 py-3 text-[13px] font-mono tabular whitespace-nowrap" style={{ color: '#2dd4bf' }}>
         {lead.value ? formatINR(lead.value) : '—'}
       </td>
       <td className={`px-4 py-3 text-xs font-mono font-medium whitespace-nowrap ${qualityColor[lead.quality] ?? 'text-text3'}`}>

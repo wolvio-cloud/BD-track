@@ -3,55 +3,42 @@
 interface StatCardProps {
   label: string
   value: string | number
-  icon: string
   accentColor: string
   sub?: string
   delay?: number
 }
 
-export default function StatCard({ label, value, icon, accentColor, sub, delay = 0 }: StatCardProps) {
+export default function StatCard({ label, value, accentColor, sub, delay = 0 }: StatCardProps) {
   return (
     <div
-      className="relative bg-surface border border-border rounded-2xl p-6 flex flex-col gap-4 overflow-hidden group hover:border-border2 transition-all duration-300 cursor-default animate-fade-up"
+      className="relative bg-surface border border-border rounded-xl px-5 py-5 flex flex-col gap-2.5 overflow-hidden group hover:border-border2 transition-colors duration-150 cursor-default animate-fade-up"
       style={{ animationDelay: `${delay}ms` }}
     >
-      {/* Permanent ambient glow */}
+      {/* Ambient tint */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: `radial-gradient(ellipse at 0% 0%, ${accentColor}20 0%, transparent 65%)` }}
+        style={{ background: `radial-gradient(ellipse at 0% 0%, ${accentColor}0d 0%, transparent 65%)` }}
       />
-      {/* Stronger hover glow */}
+      {/* Bottom accent line */}
       <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{ background: `radial-gradient(ellipse at 20% 0%, ${accentColor}30 0%, transparent 65%)` }}
-      />
-      {/* Top accent line */}
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: `linear-gradient(90deg, transparent, ${accentColor}80, transparent)` }}
+        className="absolute bottom-0 left-0 right-0 h-px"
+        style={{ background: `linear-gradient(90deg, ${accentColor}50, transparent 60%)` }}
       />
 
-      <div className="relative flex items-start justify-between">
-        <span className="text-xs font-mono text-text3 uppercase tracking-[0.12em]">{label}</span>
-        <span
-          className="text-base leading-none p-1.5 rounded-lg shrink-0"
-          style={{ color: accentColor, background: `${accentColor}18` }}
-        >
-          {icon}
-        </span>
-      </div>
+      <p className="relative text-[11px] font-medium text-text3 uppercase tracking-[0.1em]">
+        {label}
+      </p>
 
-      <div className="relative">
-        <div
-          className="text-4xl font-display font-bold leading-none tracking-tight"
-          style={{ color: accentColor }}
-        >
-          {value}
-        </div>
-        {sub && (
-          <p className="mt-2 text-xs font-mono text-text3 leading-relaxed">{sub}</p>
-        )}
-      </div>
+      <p
+        className="relative text-3xl font-bold leading-none tabular"
+        style={{ color: accentColor }}
+      >
+        {value}
+      </p>
+
+      {sub && (
+        <p className="relative text-xs text-text3 leading-relaxed">{sub}</p>
+      )}
     </div>
   )
 }

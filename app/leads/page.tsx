@@ -66,7 +66,7 @@ export default function LeadsPage() {
       <main className="flex-1 px-4 md:px-8 py-6 flex flex-col gap-5 max-w-7xl w-full mx-auto">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="font-display font-bold text-2xl text-text">All Leads</h1>
+            <h1 className="text-[22px] font-semibold text-text tracking-tight">All Leads</h1>
             <p className="text-sm text-text3 font-mono mt-1">
               {loading ? 'Loading…' : `${leads.length} total · ${filtered.length} shown`}
             </p>

@@ -25,7 +25,7 @@ interface CardProps {
 function LeadCard({ lead, currentUser, onView, onEdit }: CardProps) {
   const canEdit = currentUser.role === 'Founder' || lead.owner === currentUser.name
   const overdue = isOverdue(lead.nextAction)
-  const qualityColor = lead.quality === 'High' ? '#6ee7b7' : lead.quality === 'Medium' ? '#fb923c' : '#5a5870'
+  const qualityColor = lead.quality === 'High' ? '#10b981' : lead.quality === 'Medium' ? '#f59e0b' : '#44445c'
 
   return (
     <div
@@ -46,7 +46,7 @@ function LeadCard({ lead, currentUser, onView, onEdit }: CardProps) {
       </div>
 
       {lead.value && parseFloat(lead.value) > 0 && (
-        <p className="text-xs font-mono font-semibold text-accent mb-2">{formatINR(lead.value)}</p>
+        <p className="text-[12px] font-mono font-semibold tabular mb-2" style={{ color: '#2dd4bf' }}>{formatINR(lead.value)}</p>
       )}
 
       <div className="flex items-center justify-between gap-2">
@@ -63,7 +63,7 @@ function LeadCard({ lead, currentUser, onView, onEdit }: CardProps) {
       {canEdit && (
         <button
           onClick={(e) => { e.stopPropagation(); onEdit(lead) }}
-          className="mt-2.5 w-full text-xs font-mono text-text3 hover:text-accent2 border border-border hover:border-accent2/40 rounded-lg py-1 transition-all opacity-0 group-hover:opacity-100"
+          className="mt-2.5 w-full text-[11px] text-text3 hover:text-text border border-border hover:border-border2 rounded-lg py-1 transition-all opacity-0 group-hover:opacity-100"
         >
           Edit
         </button>

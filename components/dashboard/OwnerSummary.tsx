@@ -26,12 +26,12 @@ export default function OwnerSummary({ leads }: { leads: Lead[] }) {
 
   return (
     <div
-      className="bg-surface border border-border rounded-2xl p-6 animate-fade-up"
+      className="bg-surface border border-border rounded-xl p-5 animate-fade-up"
       style={{ animationDelay: '600ms' }}
     >
       <div className="mb-5">
-        <h2 className="text-sm font-display font-semibold text-text">Team Performance</h2>
-        <p className="text-xs font-mono text-text3 mt-0.5">Active pipeline per BD member</p>
+        <h2 className="text-[13px] font-semibold text-text">Team Performance</h2>
+        <p className="text-[12px] text-text3 mt-0.5">Active pipeline per BD member</p>
       </div>
 
       <div className="overflow-x-auto -mx-1 px-1">
@@ -56,19 +56,19 @@ export default function OwnerSummary({ leads }: { leads: Lead[] }) {
                   <td className="py-3 pr-4">
                     <div className="flex items-center gap-2">
                       <div
-                        className="h-6 w-6 rounded-full flex items-center justify-center text-xs font-display font-bold shrink-0"
-                        style={{ background: 'rgba(129,140,248,0.15)', color: '#818cf8' }}
+                        className="h-6 w-6 rounded-full flex items-center justify-center text-[11px] font-semibold shrink-0"
+                        style={{ background: 'rgba(99,102,241,0.12)', color: '#6366f1' }}
                       >
                         {owner[0]}
                       </div>
-                      <span className="text-sm font-body font-medium text-text">{owner}</span>
+                      <span className="text-[13px] font-medium text-text">{owner}</span>
                     </div>
                   </td>
                   <td className="py-3 pr-4">
-                    <span className="text-sm font-mono font-bold text-accent2">{active}</span>
+                    <span className="text-[13px] font-mono font-semibold tabular text-accent">{active}</span>
                   </td>
                   <td className="py-3 pr-4">
-                    <span className="text-sm font-mono text-accent">{pipeline > 0 ? formatINR(pipeline) : '—'}</span>
+                    <span className="text-[13px] font-mono tabular" style={{ color: '#2dd4bf' }}>{pipeline > 0 ? formatINR(pipeline) : '—'}</span>
                   </td>
                   <td className="py-3 pr-4">
                     {winRate !== null ? (
@@ -83,7 +83,7 @@ export default function OwnerSummary({ leads }: { leads: Lead[] }) {
                         {attn} {attn === 1 ? 'lead' : 'leads'}
                       </span>
                     ) : (
-                      <span className="text-xs font-mono text-accent">✓ Clear</span>
+                      <span className="text-[12px] font-medium" style={{ color: '#10b981' }}>Clear</span>
                     )}
                   </td>
                 </tr>

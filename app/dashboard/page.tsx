@@ -73,16 +73,16 @@ export default function DashboardPage() {
       <main className="flex-1 px-4 md:px-8 py-6 flex flex-col gap-6 max-w-7xl w-full mx-auto">
         <div className="animate-fade-up flex items-end justify-between gap-4 flex-wrap">
           <div>
-            <p className="text-sm font-mono text-text3 mb-1">
+            <p className="text-[12px] text-text3 mb-1 font-mono">
               {new Date().toLocaleDateString('en-IN', {
                 weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
               })}
             </p>
-            <h1 className="font-display font-extrabold text-3xl text-text tracking-tight">
+            <h1 className="text-[26px] font-semibold text-text tracking-tight">
               Pipeline Overview
             </h1>
           </div>
-          <p className="text-sm font-body text-text3 mb-0.5">
+          <p className="text-[13px] text-text3 mb-0.5">
             Welcome back, <span className="text-text font-medium">{user.name}</span>
           </p>
         </div>
@@ -111,52 +111,46 @@ export default function DashboardPage() {
           </div>
         ) : (
           <>
-            {/* Today's hit list — shown only when there are due items */}
+            {/* Today's hit list */}
             {todayItems.length > 0 && (
-              <div className="bg-accent/10 border border-accent/20 rounded-2xl px-5 py-4 flex items-center gap-4 animate-fade-up">
-                <span className="text-xl">📋</span>
-                <div>
-                  <p className="text-sm font-display font-semibold text-text">
-                    {todayItems.length} follow-up{todayItems.length > 1 ? 's' : ''} due today
-                  </p>
-                  <p className="text-xs font-mono text-text3 mt-0.5">
+              <div className="bg-surface border border-accent/20 rounded-xl px-5 py-3.5 flex items-center gap-3 animate-fade-up">
+                <div className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                <p className="text-[13px] font-medium text-text">
+                  {todayItems.length} follow-up{todayItems.length > 1 ? 's' : ''} due today
+                  <span className="text-text3 font-normal ml-2">
                     {todayItems.map((l) => l.company).join(' · ')}
-                  </p>
-                </div>
+                  </span>
+                </p>
               </div>
             )}
 
             {/* Stat cards */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <StatCard
                 label="Active Leads"
                 value={active.length}
-                icon="◉"
-                accentColor="#818cf8"
+                accentColor="#6366f1"
                 delay={0}
                 sub={`${leads.length} total in pipeline`}
               />
               <StatCard
                 label="Pipeline Value"
                 value={formatINR(pipelineValue)}
-                icon="◈"
-                accentColor="#6ee7b7"
+                accentColor="#2dd4bf"
                 delay={50}
                 sub={`${formatINR(weightedValue)} weighted`}
               />
               <StatCard
                 label="Deals Won"
                 value={wonCount}
-                icon="★"
-                accentColor="#6ee7b7"
+                accentColor="#10b981"
                 delay={100}
                 sub={wonCount > 0 ? `${closeRate}% close rate` : 'Keep pushing!'}
               />
               <StatCard
                 label="Needs Attention"
                 value={needsAttention}
-                icon="⚠"
-                accentColor={needsAttention > 0 ? '#fb923c' : '#5a5870'}
+                accentColor={needsAttention > 0 ? '#f59e0b' : '#44445c'}
                 delay={150}
                 sub={
                   overdueCount > 0

@@ -25,16 +25,16 @@ export default function FunnelChart({ leads }: { leads: Lead[] }) {
       : null
 
   return (
-    <div className="relative bg-surface border border-border rounded-2xl p-6 animate-fade-up overflow-hidden" style={{ animationDelay: '200ms' }}>
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 100% 0%, rgba(129,140,248,0.08) 0%, transparent 50%)' }} />
-      <div className="flex items-center justify-between mb-6">
+    <div className="relative bg-surface border border-border rounded-xl p-5 animate-fade-up overflow-hidden" style={{ animationDelay: '200ms' }}>
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 100% 0%, rgba(99,102,241,0.07) 0%, transparent 50%)' }} />
+      <div className="flex items-center justify-between mb-5">
         <div>
-          <h2 className="text-sm font-display font-semibold text-text">Pipeline Funnel</h2>
-          <p className="text-xs font-mono text-text3 mt-0.5">{total} total leads across all stages</p>
+          <h2 className="text-[13px] font-semibold text-text">Pipeline Funnel</h2>
+          <p className="text-[12px] text-text3 mt-0.5">{total} total leads across all stages</p>
         </div>
         <div className="flex items-center gap-2">
           {winRate !== null && (
-            <span className="text-xs font-mono text-accent bg-accent/10 px-2.5 py-1 rounded-full">
+            <span className="text-[11px] font-mono px-2.5 py-1 rounded-full" style={{ color: '#10b981', background: 'rgba(16,185,129,0.1)' }}>
               {winRate}% win rate
             </span>
           )}
@@ -44,7 +44,7 @@ export default function FunnelChart({ leads }: { leads: Lead[] }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-2">
         {/* Active stages */}
         <div className="flex flex-col gap-2.5">
-          <p className="text-xs font-mono text-text3 uppercase tracking-widest mb-1">Active</p>
+          <p className="text-[11px] text-text3 uppercase tracking-[0.08em] mb-2">Active</p>
           {ACTIVE_STAGES.map((stage) => {
             const c = count(stage)
             const barPct = Math.round((c / maxActive) * 100)
@@ -66,7 +66,7 @@ export default function FunnelChart({ leads }: { leads: Lead[] }) {
                   />
                 </div>
                 <div className="w-14 flex items-center justify-end gap-1.5 shrink-0">
-                  <span className="text-sm font-display font-bold" style={{ color: c > 0 ? colors?.text : '#5a5870' }}>
+                  <span className="text-[13px] font-semibold tabular" style={{ color: c > 0 ? colors?.text : '#44445c' }}>
                     {c}
                   </span>
                   {c > 0 && (
@@ -80,7 +80,7 @@ export default function FunnelChart({ leads }: { leads: Lead[] }) {
 
         {/* Closed + mini stats */}
         <div className="flex flex-col gap-2.5">
-          <p className="text-xs font-mono text-text3 uppercase tracking-widest mb-1">Closed</p>
+          <p className="text-[11px] text-text3 uppercase tracking-[0.08em] mb-2">Closed</p>
           {CLOSED_STAGES.map((stage) => {
             const c = count(stage)
             const ofTotal = total > 0 ? Math.round((c / total) * 100) : 0
@@ -101,7 +101,7 @@ export default function FunnelChart({ leads }: { leads: Lead[] }) {
                   />
                 </div>
                 <div className="w-14 flex items-center justify-end gap-1.5 shrink-0">
-                  <span className="text-sm font-display font-bold" style={{ color: c > 0 ? colors?.text : '#5a5870' }}>
+                  <span className="text-[13px] font-semibold tabular" style={{ color: c > 0 ? colors?.text : '#44445c' }}>
                     {c}
                   </span>
                   {c > 0 && (
@@ -114,18 +114,18 @@ export default function FunnelChart({ leads }: { leads: Lead[] }) {
 
           {/* Mini stat grid */}
           <div className="mt-4 grid grid-cols-2 gap-3">
-            <div className="bg-surface2 border border-border rounded-xl p-4">
-              <p className="text-xs font-mono text-text3 uppercase tracking-wider mb-2">Win Rate</p>
-              <p className="text-2xl font-display font-bold text-accent leading-none">
+            <div className="bg-surface2 border border-border rounded-lg p-4">
+              <p className="text-[11px] text-text3 uppercase tracking-wider mb-2">Win Rate</p>
+              <p className="text-[22px] font-semibold tabular leading-none" style={{ color: '#10b981' }}>
                 {winRate !== null ? `${winRate}%` : '—'}
               </p>
-              <p className="text-xs font-mono text-text3 mt-1">
+              <p className="text-[11px] text-text3 mt-1.5">
                 {closedTotal > 0 ? `${wonCount} of ${closedTotal} closed` : 'No closed deals yet'}
               </p>
             </div>
-            <div className="bg-surface2 border border-border rounded-xl p-4">
-              <p className="text-xs font-mono text-text3 uppercase tracking-wider mb-2">Avg Value</p>
-              <p className="text-2xl font-display font-bold text-accent2 leading-none">
+            <div className="bg-surface2 border border-border rounded-lg p-4">
+              <p className="text-[11px] text-text3 uppercase tracking-wider mb-2">Avg Value</p>
+              <p className="text-[22px] font-semibold tabular leading-none" style={{ color: '#2dd4bf' }}>
                 {avgValue
                   ? avgValue >= 1e7
                     ? `₹${(avgValue / 1e7).toFixed(1)}Cr`
@@ -134,7 +134,7 @@ export default function FunnelChart({ leads }: { leads: Lead[] }) {
                     : `₹${Math.round(avgValue).toLocaleString('en-IN')}`
                   : '—'}
               </p>
-              <p className="text-xs font-mono text-text3 mt-1">active leads with value</p>
+              <p className="text-[11px] text-text3 mt-1.5">active leads with value</p>
             </div>
           </div>
         </div>

@@ -33,9 +33,9 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 }
 
 const QUALITY_COLOR: Record<string, string> = {
-  High: '#6ee7b7',
-  Medium: '#fb923c',
-  Low: '#5a5870',
+  High: '#10b981',
+  Medium: '#f59e0b',
+  Low: '#44445c',
 }
 
 function isStale(lastContact: string | undefined): boolean {
@@ -58,7 +58,7 @@ export default function LeadDetailPanel({ lead, currentUser, onClose, onEdit }: 
       />
 
       {/* Panel */}
-      <div className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-lg bg-surface border-l border-border flex flex-col overflow-hidden shadow-xl">
+      <div className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-lg bg-surface border-l border-border flex flex-col overflow-hidden shadow-xl animate-slide-in-right">
 
         {/* Header */}
         <div className="relative px-6 pt-6 pb-5 border-b border-border shrink-0">
@@ -77,7 +77,7 @@ export default function LeadDetailPanel({ lead, currentUser, onClose, onEdit }: 
                   <span className="text-xs font-mono text-warn bg-warn/10 px-2 py-0.5 rounded-full">Stale</span>
                 )}
               </div>
-              <h2 className="font-display font-bold text-xl text-text leading-tight">{lead.company}</h2>
+              <h2 className="text-[18px] font-semibold text-text leading-tight">{lead.company}</h2>
               {lead.location && (
                 <p className="text-xs font-mono text-text3 mt-0.5">{lead.location}</p>
               )}
@@ -86,7 +86,7 @@ export default function LeadDetailPanel({ lead, currentUser, onClose, onEdit }: 
               {canEdit && (
                 <button
                   onClick={() => onEdit(lead)}
-                  className="text-sm font-mono text-accent2 border border-border hover:border-accent2 px-3 py-1.5 rounded-lg transition-colors"
+                  className="text-[12px] font-medium border border-border hover:border-accent px-3 py-1.5 rounded-lg transition-colors text-text2 hover:text-text"
                 >
                   Edit
                 </button>
@@ -105,7 +105,7 @@ export default function LeadDetailPanel({ lead, currentUser, onClose, onEdit }: 
             {lead.value && parseFloat(lead.value) > 0 && (
               <div>
                 <p className="text-[10px] font-mono text-text3 uppercase tracking-widest">Value</p>
-                <p className="text-xl font-display font-bold" style={{ color: colors?.text ?? '#6ee7b7' }}>
+                <p className="text-[20px] font-semibold tabular" style={{ color: '#2dd4bf' }}>
                   {formatINR(lead.value)}
                 </p>
               </div>
@@ -137,7 +137,7 @@ export default function LeadDetailPanel({ lead, currentUser, onClose, onEdit }: 
               {lead.email && (
                 <a
                   href={`mailto:${lead.email}`}
-                  className="flex items-center gap-2 text-sm font-mono text-accent2 hover:text-accent transition-colors"
+                  className="flex items-center gap-2 text-[13px] font-mono text-accent hover:text-accent2 transition-colors"
                 >
                   <span className="text-text3">✉</span> {lead.email}
                 </a>
@@ -145,7 +145,7 @@ export default function LeadDetailPanel({ lead, currentUser, onClose, onEdit }: 
               {lead.phone && (
                 <a
                   href={`tel:${lead.phone}`}
-                  className="flex items-center gap-2 text-sm font-mono text-accent2 hover:text-accent transition-colors"
+                  className="flex items-center gap-2 text-[13px] font-mono text-accent hover:text-accent2 transition-colors"
                 >
                   <span className="text-text3">✆</span> {lead.phone}
                 </a>
@@ -155,7 +155,7 @@ export default function LeadDetailPanel({ lead, currentUser, onClose, onEdit }: 
                   href={lead.linkedin.startsWith('http') ? lead.linkedin : `https://${lead.linkedin}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm font-mono text-accent2 hover:text-accent transition-colors"
+                  className="flex items-center gap-2 text-[13px] font-mono text-accent hover:text-accent2 transition-colors"
                 >
                   <span className="text-text3">in</span> LinkedIn Profile
                 </a>

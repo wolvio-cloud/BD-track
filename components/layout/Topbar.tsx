@@ -6,29 +6,30 @@ export default function Topbar() {
   const { user, logout } = useAuth()
 
   return (
-    <header className="h-14 border-b border-border bg-surface/80 backdrop-blur-sm flex items-center justify-between px-6 sticky top-0 z-40">
-      <span className="font-display font-extrabold text-xl tracking-tight text-text">
-        Wolvio<span className="text-accent">.</span>
+    <header className="h-12 border-b border-border bg-surface/90 backdrop-blur-md flex items-center justify-between px-6 sticky top-0 z-40">
+      <span className="text-[15px] font-semibold text-text tracking-tight">
+        Wolvio <span className="text-text3 font-normal">BD Track</span>
       </span>
+
       {user && (
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2.5">
+          <div className="hidden sm:flex items-center gap-2.5">
             <div
-              className="h-7 w-7 rounded-full flex items-center justify-center text-xs font-display font-bold shrink-0"
-              style={{ background: 'rgba(129,140,248,0.2)', color: '#818cf8' }}
+              className="h-6 w-6 rounded-full flex items-center justify-center text-[11px] font-semibold shrink-0"
+              style={{ background: 'rgba(99,102,241,0.15)', color: '#6366f1' }}
             >
               {user.name[0]}
             </div>
-            <div className="hidden sm:flex flex-col leading-none">
-              <span className="text-xs font-body font-medium text-text">{user.name}</span>
-              <span className="text-xs font-mono text-text3">{user.role}</span>
+            <div className="leading-none">
+              <p className="text-[13px] font-medium text-text">{user.name}</p>
+              <p className="text-[11px] text-text3 mt-0.5">{user.role}</p>
             </div>
           </div>
           <button
             onClick={logout}
-            className="text-xs font-mono text-text3 hover:text-danger transition-colors border border-border hover:border-danger/40 px-3 py-1.5 rounded-lg"
+            className="text-[12px] text-text3 hover:text-danger transition-colors px-3 py-1.5 rounded-md border border-border hover:border-danger/30"
           >
-            Logout
+            Sign out
           </button>
         </div>
       )}
