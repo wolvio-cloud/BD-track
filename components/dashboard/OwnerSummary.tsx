@@ -26,11 +26,11 @@ export default function OwnerSummary({ leads }: { leads: Lead[] }) {
 
   return (
     <div
-      className="bg-surface border border-border rounded-xl p-5 animate-fade-up"
-      style={{ animationDelay: '600ms' }}
+      className="bg-surface rounded-2xl p-5 animate-fade-up h-full"
+      style={{ animationDelay: '300ms', boxShadow: '0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)' }}
     >
       <div className="mb-5">
-        <h2 className="text-[13px] font-semibold text-text">Team Performance</h2>
+        <h2 className="text-[15px] font-bold text-text">Team Performance</h2>
         <p className="text-[12px] text-text3 mt-0.5">Active pipeline per BD member</p>
       </div>
 

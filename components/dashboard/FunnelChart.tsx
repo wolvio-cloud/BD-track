@@ -25,12 +25,12 @@ export default function FunnelChart({ leads }: { leads: Lead[] }) {
       : null
 
   return (
-    <div className="relative bg-surface border border-border rounded-xl p-5 animate-fade-up overflow-hidden" style={{ animationDelay: '200ms' }}>
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 100% 0%, rgba(99,102,241,0.07) 0%, transparent 50%)' }} />
+    <div className="relative bg-surface rounded-2xl p-6 animate-fade-up overflow-hidden h-full" style={{ animationDelay: '200ms', boxShadow: '0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)' }}>
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 100% 0%, rgba(79,70,229,0.05) 0%, transparent 50%)' }} />
       <div className="flex items-center justify-between mb-5">
         <div>
-          <h2 className="text-[13px] font-semibold text-text">Pipeline Funnel</h2>
-          <p className="text-[12px] text-text3 mt-0.5">{total} total leads across all stages</p>
+          <h2 className="text-[15px] font-bold text-text">Pipeline Funnel</h2>
+          <p className="text-[12px] text-text3 mt-0.5 font-mono">{total} total leads across all stages</p>
         </div>
         <div className="flex items-center gap-2">
           {winRate !== null && (
