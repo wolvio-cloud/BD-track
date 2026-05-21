@@ -59,15 +59,17 @@ export default function LeadsPage() {
 
   return (
     <AppShell>
-      <main className="flex-1 px-4 md:px-8 py-6 flex flex-col gap-5 max-w-[1100px] w-full mx-auto">
-        <div className="flex items-center justify-between">
+      <div className="min-h-screen flex flex-col">
+        {/* Page header */}
+        <div className="bg-surface border-b border-border px-8 py-5 flex items-center justify-between shrink-0" style={{ boxShadow: '0 1px 0 rgba(0,0,0,0.04)' }}>
           <div>
-            <h1 className="text-[22px] font-semibold text-text tracking-tight">All Leads</h1>
-            <p className="text-sm text-text3 font-mono mt-1">
+            <h1 className="text-[24px] font-black text-text tracking-tight leading-none">All Leads</h1>
+            <p className="text-[12px] text-text3 font-mono mt-1 uppercase tracking-[0.08em]">
               {loading ? 'Loading…' : `${leads.length} total · ${filtered.length} shown`}
             </p>
           </div>
         </div>
+      <main className="flex-1 px-6 py-5 flex flex-col gap-4">
 
         <TableToolbar
           leads={leads}
@@ -86,7 +88,7 @@ export default function LeadsPage() {
         />
 
         {loading ? (
-          <div className="bg-surface border border-border rounded-2xl overflow-hidden">
+          <div className="bg-surface rounded-2xl overflow-hidden" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)' }}>
             <div className="overflow-x-auto">
               <table className="w-full min-w-[900px]">
                 <tbody>
@@ -96,7 +98,7 @@ export default function LeadsPage() {
             </div>
           </div>
         ) : error ? (
-          <div className="bg-surface border border-danger/30 rounded-2xl p-6 text-center">
+          <div className="bg-surface border border-danger/30 rounded-2xl p-6 text-center" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
             <p className="text-danger text-sm font-body">{error}</p>
             <button onClick={reload} className="mt-3 text-xs font-mono text-text3 hover:text-text underline">
               Retry
@@ -118,6 +120,7 @@ export default function LeadsPage() {
           />
         )}
       </main>
+      </div>
 
       {/* Lead detail panel */}
       {detailLead && (

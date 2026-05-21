@@ -70,7 +70,7 @@ export default function LeadsTable({ leads, currentUser, onEdit, onView }: Leads
 
   if (leads.length === 0) {
     return (
-      <div className="bg-surface border border-border rounded-2xl flex flex-col items-center justify-center py-20 gap-3">
+      <div className="bg-surface rounded-2xl flex flex-col items-center justify-center py-20 gap-3" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
         <p className="text-text2 font-body text-sm">No leads match your filters.</p>
         <p className="text-text3 font-mono text-xs">Try adjusting your search or filters.</p>
       </div>
@@ -78,7 +78,7 @@ export default function LeadsTable({ leads, currentUser, onEdit, onView }: Leads
   }
 
   return (
-    <div className="bg-surface border border-border rounded-2xl overflow-hidden">
+    <div className="bg-surface rounded-2xl overflow-hidden" style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)' }}>
       <div className="overflow-x-auto">
         <table className="w-full min-w-[900px]">
           <thead>

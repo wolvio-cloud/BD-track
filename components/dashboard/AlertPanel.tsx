@@ -21,12 +21,12 @@ function AttentionPanel({ leads }: { leads: Lead[] }) {
 
   return (
     <div
-      className="bg-surface border border-border rounded-xl p-5 flex-1 min-w-0 animate-fade-up"
-      style={{ animationDelay: '400ms' }}
+      className="bg-surface rounded-2xl p-5 flex-1 min-w-0 animate-fade-up"
+      style={{ animationDelay: '400ms', boxShadow: '0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)' }}
     >
       <div className="flex items-start justify-between mb-5">
         <div>
-          <h2 className="text-[13px] font-semibold text-text">Needs Attention</h2>
+          <h2 className="text-[14px] font-bold text-text">Needs Attention</h2>
           <p className="text-[12px] text-text3 mt-0.5">Overdue or missing follow-ups</p>
         </div>
         {urgentCount > 0 && (
@@ -87,12 +87,12 @@ function OpportunityPanel({ leads }: { leads: Lead[] }) {
 
   return (
     <div
-      className="bg-surface border border-border rounded-xl p-5 flex-1 min-w-0 animate-fade-up"
-      style={{ animationDelay: '500ms' }}
+      className="bg-surface rounded-2xl p-5 flex-1 min-w-0 animate-fade-up"
+      style={{ animationDelay: '500ms', boxShadow: '0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)' }}
     >
       <div className="flex items-start justify-between mb-5">
         <div>
-          <h2 className="text-[13px] font-semibold text-text">High Opportunity</h2>
+          <h2 className="text-[14px] font-bold text-text">High Opportunity</h2>
           <p className="text-[12px] text-text3 mt-0.5">Top active leads by quality &amp; value</p>
         </div>
         {items.length > 0 && (

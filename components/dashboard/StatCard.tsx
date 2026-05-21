@@ -11,33 +11,40 @@ interface StatCardProps {
 export default function StatCard({ label, value, accentColor, sub, delay = 0 }: StatCardProps) {
   return (
     <div
-      className="relative bg-surface border border-border rounded-xl px-5 py-5 flex flex-col gap-2.5 overflow-hidden group hover:border-border2 transition-colors duration-150 cursor-default animate-fade-up"
-      style={{ animationDelay: `${delay}ms` }}
+      className="relative bg-surface rounded-2xl p-5 flex flex-col gap-3 overflow-hidden animate-fade-up cursor-default"
+      style={{
+        animationDelay: `${delay}ms`,
+        boxShadow: '0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04)',
+      }}
     >
+      {/* Top accent bar */}
+      <div
+        className="absolute top-0 left-5 right-5 h-[3px] rounded-b-full"
+        style={{ background: `linear-gradient(90deg, ${accentColor}, ${accentColor}60)` }}
+      />
+
       {/* Ambient tint */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: `radial-gradient(ellipse at 0% 0%, ${accentColor}0d 0%, transparent 65%)` }}
-      />
-      {/* Bottom accent line */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-px"
-        style={{ background: `linear-gradient(90deg, ${accentColor}50, transparent 60%)` }}
+        style={{ background: `radial-gradient(ellipse at 0% 0%, ${accentColor}0a 0%, transparent 70%)` }}
       />
 
-      <p className="relative text-[11px] font-medium text-text3 uppercase tracking-[0.1em]">
+      {/* Label */}
+      <p className="relative text-[11px] font-semibold uppercase tracking-[0.12em] text-text3 mt-1">
         {label}
       </p>
 
+      {/* Value */}
       <p
-        className="relative text-3xl font-bold leading-none tabular"
+        className="relative text-[40px] font-black leading-none tabular tracking-tight"
         style={{ color: accentColor }}
       >
         {value}
       </p>
 
+      {/* Sub */}
       {sub && (
-        <p className="relative text-xs text-text3 leading-relaxed">{sub}</p>
+        <p className="relative text-[12px] text-text3 leading-snug font-mono">{sub}</p>
       )}
     </div>
   )
