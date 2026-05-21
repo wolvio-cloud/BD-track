@@ -25,7 +25,7 @@ interface CardProps {
 function LeadCard({ lead, currentUser, onView, onEdit }: CardProps) {
   const canEdit = currentUser.role === 'Founder' || lead.owner === currentUser.name
   const overdue = isOverdue(lead.nextAction)
-  const qualityColor = lead.quality === 'High' ? '#10b981' : lead.quality === 'Medium' ? '#f59e0b' : '#44445c'
+  const qualityColor = lead.quality === 'High' ? '#059669' : lead.quality === 'Medium' ? '#d97706' : '#9ca3af'
 
   return (
     <div
@@ -46,7 +46,7 @@ function LeadCard({ lead, currentUser, onView, onEdit }: CardProps) {
       </div>
 
       {lead.value && parseFloat(lead.value) > 0 && (
-        <p className="text-[12px] font-mono font-semibold tabular mb-2" style={{ color: '#2dd4bf' }}>{formatINR(lead.value)}</p>
+        <p className="text-[12px] font-mono font-semibold tabular mb-2" style={{ color: '#0d9488' }}>{formatINR(lead.value)}</p>
       )}
 
       <div className="flex items-center justify-between gap-2">

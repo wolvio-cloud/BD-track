@@ -34,7 +34,7 @@ export default function FunnelChart({ leads }: { leads: Lead[] }) {
         </div>
         <div className="flex items-center gap-2">
           {winRate !== null && (
-            <span className="text-[11px] font-mono px-2.5 py-1 rounded-full" style={{ color: '#10b981', background: 'rgba(16,185,129,0.1)' }}>
+            <span className="text-[11px] font-mono px-2.5 py-1 rounded-full" style={{ color: '#047857', background: 'rgba(5,150,105,0.10)' }}>
               {winRate}% win rate
             </span>
           )}
@@ -116,7 +116,7 @@ export default function FunnelChart({ leads }: { leads: Lead[] }) {
           <div className="mt-4 grid grid-cols-2 gap-3">
             <div className="bg-surface2 border border-border rounded-lg p-4">
               <p className="text-[11px] text-text3 uppercase tracking-wider mb-2">Win Rate</p>
-              <p className="text-[22px] font-semibold tabular leading-none" style={{ color: '#10b981' }}>
+              <p className="text-[22px] font-semibold tabular leading-none" style={{ color: '#047857' }}>
                 {winRate !== null ? `${winRate}%` : '—'}
               </p>
               <p className="text-[11px] text-text3 mt-1.5">
@@ -125,7 +125,7 @@ export default function FunnelChart({ leads }: { leads: Lead[] }) {
             </div>
             <div className="bg-surface2 border border-border rounded-lg p-4">
               <p className="text-[11px] text-text3 uppercase tracking-wider mb-2">Avg Value</p>
-              <p className="text-[22px] font-semibold tabular leading-none" style={{ color: '#2dd4bf' }}>
+              <p className="text-[22px] font-semibold tabular leading-none" style={{ color: '#0d9488' }}>
                 {avgValue
                   ? avgValue >= 1e7
                     ? `₹${(avgValue / 1e7).toFixed(1)}Cr`

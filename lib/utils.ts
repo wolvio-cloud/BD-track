@@ -12,18 +12,18 @@ export const STAGES = [
 export type Stage = (typeof STAGES)[number]
 
 export const STAGE_COLORS: Record<string, { bg: string; text: string }> = {
-  Prospect: { bg: 'rgba(129,140,248,0.15)', text: '#818cf8' },
-  'Discovery Call': { bg: 'rgba(167,139,250,0.15)', text: '#a78bfa' },
-  Demo: { bg: 'rgba(192,132,252,0.15)', text: '#c084fc' },
-  Proposal: { bg: 'rgba(244,114,182,0.15)', text: '#f472b6' },
-  'NDA Signed': { bg: 'rgba(251,146,60,0.15)', text: '#fb923c' },
-  Negotiation: { bg: 'rgba(251,191,36,0.15)', text: '#fbbf24' },
-  Won: { bg: 'rgba(110,231,183,0.15)', text: '#6ee7b7' },
-  Lost: { bg: 'rgba(248,113,113,0.15)', text: '#f87171' },
+  Prospect:         { bg: 'rgba(99,102,241,0.10)',  text: '#4338ca' },
+  'Discovery Call': { bg: 'rgba(124,58,237,0.10)',  text: '#6d28d9' },
+  Demo:             { bg: 'rgba(139,92,246,0.10)',   text: '#7c3aed' },
+  Proposal:         { bg: 'rgba(219,39,119,0.10)',   text: '#be185d' },
+  'NDA Signed':     { bg: 'rgba(234,88,12,0.10)',    text: '#c2410c' },
+  Negotiation:      { bg: 'rgba(161,98,7,0.10)',     text: '#92400e' },
+  Won:              { bg: 'rgba(5,150,105,0.10)',    text: '#047857' },
+  Lost:             { bg: 'rgba(185,28,28,0.10)',    text: '#b91c1c' },
 }
 
 export function stageColor(stage: string): { bg: string; text: string } {
-  return STAGE_COLORS[stage] ?? { bg: 'rgba(255,255,255,0.08)', text: '#9d9bbb' }
+  return STAGE_COLORS[stage] ?? { bg: 'rgba(156,163,175,0.15)', text: '#6b7280' }
 }
 
 export function formatINR(val: string | number): string {

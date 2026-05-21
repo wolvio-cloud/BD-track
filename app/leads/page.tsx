@@ -4,8 +4,7 @@ import { useEffect, useState, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
 import { useLeads } from '@/hooks/useLeads'
-import Topbar from '@/components/layout/Topbar'
-import NavTabs from '@/components/layout/NavTabs'
+import AppShell from '@/components/layout/AppShell'
 import TableToolbar from '@/components/leads/TableToolbar'
 import LeadsTable from '@/components/leads/LeadsTable'
 import KanbanBoard from '@/components/leads/KanbanBoard'
@@ -59,11 +58,8 @@ export default function LeadsPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Topbar />
-      <NavTabs />
-
-      <main className="flex-1 px-4 md:px-8 py-6 flex flex-col gap-5 max-w-7xl w-full mx-auto">
+    <AppShell>
+      <main className="flex-1 px-4 md:px-8 py-6 flex flex-col gap-5 max-w-[1100px] w-full mx-auto">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-[22px] font-semibold text-text tracking-tight">All Leads</h1>
@@ -148,6 +144,6 @@ export default function LeadsPage() {
       )}
 
       {toast && <Toast message={toast.message} type={toast.type} onDismiss={dismissToast} />}
-    </div>
+    </AppShell>
   )
 }
