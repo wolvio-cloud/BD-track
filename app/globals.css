@@ -2,29 +2,32 @@
 
 @theme {
   /* Backgrounds */
-  --color-bg:       #08080f;
-  --color-surface:  #0f0f18;
-  --color-surface2: #16161f;
-  --color-surface3: #1d1d28;
+  --color-bg:       #f4f6fa;
+  --color-surface:  #ffffff;
+  --color-surface2: #f1f3f7;
+  --color-surface3: #e8ecf3;
 
   /* Borders */
-  --color-border:   #1e1e2c;
-  --color-border2:  #2a2a3c;
+  --color-border:   #e2e5ec;
+  --color-border2:  #cdd1db;
 
   /* Brand — indigo primary, teal secondary */
-  --color-accent:   #6366f1;
-  --color-accent2:  #2dd4bf;
-  --color-accent3:  #f472b6;
+  --color-accent:   #4f46e5;
+  --color-accent2:  #0d9488;
+  --color-accent3:  #db2777;
 
   /* Semantic */
-  --color-warn:     #f59e0b;
-  --color-danger:   #ef4444;
-  --color-success:  #10b981;
+  --color-warn:     #d97706;
+  --color-danger:   #dc2626;
+  --color-success:  #059669;
 
   /* Text scale */
-  --color-text:     #eeeeff;
-  --color-text2:    #8080a8;
-  --color-text3:    #44445c;
+  --color-text:     #111827;
+  --color-text2:    #4b5563;
+  --color-text3:    #9ca3af;
+
+  /* Sidebar */
+  --color-sidebar:  #1e1b4b;
 
   /* Typography — Inter for everything, JetBrains Mono for code/numbers */
   --font-display: var(--font-inter), 'Inter', system-ui, sans-serif;
@@ -33,16 +36,10 @@
 }
 
 html, body {
-  background-color: #08080f;
-  color: #eeeeff;
+  background-color: #f4f6fa;
+  color: #111827;
   font-family: var(--font-inter), 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-}
-
-body {
-  background-image:
-    radial-gradient(ellipse 80% 50% at 10% -10%, rgba(99,102,241,0.10) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 90% 105%,  rgba(45,212,191,0.06) 0%, transparent 55%);
 }
 
 /* Fade-up entrance */

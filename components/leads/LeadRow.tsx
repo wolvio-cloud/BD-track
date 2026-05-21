@@ -17,6 +17,7 @@ const qualityColor: Record<string, string> = {
   Low: 'text-text3',
 }
 
+
 function isOverdue(dateStr: string | undefined): boolean {
   if (!dateStr) return false
   const d = new Date(dateStr)
@@ -63,7 +64,7 @@ export default function LeadRow({ lead, currentUser, onEdit, onView }: LeadRowPr
       <td className="px-4 py-3">
         <StageBadge stage={lead.stage} />
       </td>
-      <td className="px-4 py-3 text-[13px] font-mono tabular whitespace-nowrap" style={{ color: '#2dd4bf' }}>
+      <td className="px-4 py-3 text-[13px] font-mono tabular whitespace-nowrap" style={{ color: '#0d9488' }}>
         {lead.value ? formatINR(lead.value) : '—'}
       </td>
       <td className={`px-4 py-3 text-xs font-mono font-medium whitespace-nowrap ${qualityColor[lead.quality] ?? 'text-text3'}`}>

@@ -121,7 +121,7 @@ function OpportunityPanel({ leads }: { leads: Lead[] }) {
                 >
                   {lead.stage}
                 </span>
-                <span className="text-[13px] font-mono font-semibold tabular" style={{ color: '#2dd4bf' }}>{formatINR(lead.value)}</span>
+                <span className="text-[13px] font-mono font-semibold tabular" style={{ color: '#0d9488' }}>{formatINR(lead.value)}</span>
               </li>
             )
           })}

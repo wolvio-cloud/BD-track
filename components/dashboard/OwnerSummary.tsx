@@ -57,7 +57,7 @@ export default function OwnerSummary({ leads }: { leads: Lead[] }) {
                     <div className="flex items-center gap-2">
                       <div
                         className="h-6 w-6 rounded-full flex items-center justify-center text-[11px] font-semibold shrink-0"
-                        style={{ background: 'rgba(99,102,241,0.12)', color: '#6366f1' }}
+                        style={{ background: 'rgba(79,70,229,0.10)', color: '#4f46e5' }}
                       >
                         {owner[0]}
                       </div>
@@ -68,7 +68,7 @@ export default function OwnerSummary({ leads }: { leads: Lead[] }) {
                     <span className="text-[13px] font-mono font-semibold tabular text-accent">{active}</span>
                   </td>
                   <td className="py-3 pr-4">
-                    <span className="text-[13px] font-mono tabular" style={{ color: '#2dd4bf' }}>{pipeline > 0 ? formatINR(pipeline) : '—'}</span>
+                    <span className="text-[13px] font-mono tabular" style={{ color: '#0d9488' }}>{pipeline > 0 ? formatINR(pipeline) : '—'}</span>
                   </td>
                   <td className="py-3 pr-4">
                     {winRate !== null ? (
@@ -83,7 +83,7 @@ export default function OwnerSummary({ leads }: { leads: Lead[] }) {
                         {attn} {attn === 1 ? 'lead' : 'leads'}
                       </span>
                     ) : (
-                      <span className="text-[12px] font-medium" style={{ color: '#10b981' }}>Clear</span>
+                      <span className="text-[12px] font-medium" style={{ color: '#047857' }}>Clear</span>
                     )}
                   </td>
                 </tr>

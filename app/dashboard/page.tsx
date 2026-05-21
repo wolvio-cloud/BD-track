@@ -4,13 +4,13 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
 import { useLeads } from '@/hooks/useLeads'
-import Topbar from '@/components/layout/Topbar'
-import NavTabs from '@/components/layout/NavTabs'
+import AppShell from '@/components/layout/AppShell'
 import StatCard from '@/components/dashboard/StatCard'
 import FunnelChart from '@/components/dashboard/FunnelChart'
 import AlertPanel from '@/components/dashboard/AlertPanel'
 import OwnerSummary from '@/components/dashboard/OwnerSummary'
 import { StatCardSkeleton, FunnelSkeleton, AlertPanelSkeleton } from '@/components/ui/Skeleton'
+import InsightBar from '@/components/dashboard/InsightBar'
 import { formatINR } from '@/lib/utils'
 
 const STAGE_PROBABILITY: Record<string, number> = {
@@ -66,11 +66,8 @@ export default function DashboardPage() {
   const closeRate = leads.length > 0 ? Math.round((wonCount / leads.length) * 100) : 0
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Topbar />
-      <NavTabs />
-
-      <main className="flex-1 px-4 md:px-8 py-6 flex flex-col gap-6 max-w-7xl w-full mx-auto">
+    <AppShell>
+      <main className="flex-1 px-4 md:px-8 py-6 flex flex-col gap-6 max-w-[1100px] w-full mx-auto">
         <div className="animate-fade-up flex items-end justify-between gap-4 flex-wrap">
           <div>
             <p className="text-[12px] text-text3 mb-1 font-mono">
@@ -129,28 +126,28 @@ export default function DashboardPage() {
               <StatCard
                 label="Active Leads"
                 value={active.length}
-                accentColor="#6366f1"
+                accentColor="#4f46e5"
                 delay={0}
                 sub={`${leads.length} total in pipeline`}
               />
               <StatCard
                 label="Pipeline Value"
                 value={formatINR(pipelineValue)}
-                accentColor="#2dd4bf"
+                accentColor="#0d9488"
                 delay={50}
                 sub={`${formatINR(weightedValue)} weighted`}
               />
               <StatCard
                 label="Deals Won"
                 value={wonCount}
-                accentColor="#10b981"
+                accentColor="#059669"
                 delay={100}
                 sub={wonCount > 0 ? `${closeRate}% close rate` : 'Keep pushing!'}
               />
               <StatCard
                 label="Needs Attention"
                 value={needsAttention}
-                accentColor={needsAttention > 0 ? '#f59e0b' : '#44445c'}
+                accentColor={needsAttention > 0 ? '#d97706' : '#9ca3af'}
                 delay={150}
                 sub={
                   overdueCount > 0
@@ -162,12 +159,13 @@ export default function DashboardPage() {
               />
             </div>
 
+            <InsightBar leads={leads} />
             <FunnelChart leads={leads} />
             <AlertPanel leads={leads} />
             <OwnerSummary leads={leads} />
           </>
         )}
       </main>
-    </div>
+    </AppShell>
   )
 }

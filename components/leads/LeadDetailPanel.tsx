@@ -33,9 +33,9 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 }
 
 const QUALITY_COLOR: Record<string, string> = {
-  High: '#10b981',
-  Medium: '#f59e0b',
-  Low: '#44445c',
+  High: '#047857',
+  Medium: '#d97706',
+  Low: '#9ca3af',
 }
 
 function isStale(lastContact: string | undefined): boolean {
@@ -105,7 +105,7 @@ export default function LeadDetailPanel({ lead, currentUser, onClose, onEdit }: 
             {lead.value && parseFloat(lead.value) > 0 && (
               <div>
                 <p className="text-[10px] font-mono text-text3 uppercase tracking-widest">Value</p>
-                <p className="text-[20px] font-semibold tabular" style={{ color: '#2dd4bf' }}>
+                <p className="text-[20px] font-semibold tabular" style={{ color: '#0d9488' }}>
                   {formatINR(lead.value)}
                 </p>
               </div>
